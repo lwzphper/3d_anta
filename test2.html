@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body { margin:0;}
+body,html { height:100%;}
+#wrap { height:100%; position:relative;}
+#box { width:2px; height:2px; margin:0 auto;
+	position:relative;
+	top:50%;
+	background:blue;
+}
+#box div {
+	position:absolute;
+	top:-1px;
+	left:-50px;
+	height:2px;
+	width:100px;
+	background:red;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="box">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+<script src="js/m.Tween.js"></script>
+<script>
+	var div = document.querySelectorAll('#box div');
+	var iLen = div.length;
+	var iWidth = div[0].offsetWidth;
+	var iDeg = (180 - 360/iLen) / 2;
+	var R = Math.round(Math.tan(iDeg * Math.PI/180) * (iWidth/2));
+	for(var i = 0; i < iLen; i++){
+		var deg = iDeg * i;
+		var x = Math.sin(deg * Math.PI/180) * R;
+		var y = Math.cos(deg * Math.PI/180) * R;
+		css(div[i],"translateX",x);
+		css(div[i],"translateY",y);
+		css(div[i],"rotate",-deg);
+	}
+</script>
+</body>
+</html>
